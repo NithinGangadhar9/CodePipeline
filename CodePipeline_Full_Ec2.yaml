@@ -358,7 +358,7 @@ Resources:
     Properties:
       InstanceType: !Ref InstanceType
       SecurityGroups:
-        - !Ref InstanceSecurityGroup
+        - !Ref InstanceSecurityGroupTop
       KeyName: !Ref KeyName
       ImageId: !FindInMap 
         - AWSRegionArch2AMI
@@ -367,7 +367,7 @@ Resources:
           - AWSInstanceType2Arch
           - !Ref InstanceType
           - Arch
-  InstanceSecurityGroup:
+  InstanceSecurityGroupTop:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
       GroupDescription: Enable SSH access via port 22
