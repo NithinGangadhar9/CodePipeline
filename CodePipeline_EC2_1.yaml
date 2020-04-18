@@ -6,3 +6,32 @@ Resources:
    AvailabilityZone: ca-central-1a
    ImageId: ami-0bf54ac1b628cf143
    InstanceType: t2.micro
+ SecurityGroups: 
+  !REF SSH-SecurityGroup
+  !REF MYSQL-SecurityGroup
+
+ MyEIP:
+  Type: AWS::EC2::EIP
+  Properties:
+   InstanceId: !Ref MyInstance
+
+ SSH-SecurityGroup:
+  Type: AWS::EC2::SecurityGroup
+  Properties: 
+   GroupDescription: Enable Security for SSH
+   SecurityGroupIngress:
+    - CidrIp: 0.0.0.0/0
+      FromPort: 22
+      IpProtocol: TCP
+      ToPort: 1100
+
+ MYSQL-SecurityGroup:
+  Type: AWS::EC2::SecurityGroup
+  Properties:
+   GroupDescription: Enable Security for MySQL
+   SecurityGroupIngress:
+    - CidrIp: 0.0.0.0/0 
+      FromPort: 22
+      IpProtocol: TCP
+      ToPort: 1200
+   
