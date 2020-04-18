@@ -1,8 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   AWS CloudFormation Sample Template EC2InstanceWithSecurityGroupSample: Create
-  an Amazon EC2 instance running the Amazon Linux AMI. The AMI is chosen based
-  on the region in which the stack is run. This example creates an EC2 security
+  an Amazon EC2 instance running the Amazon Linux AMI. This example creates an EC2 security
   group for the instance to give you SSH access. **WARNING** This template
   creates an Amazon EC2 instance. You will be billed for the AWS resources used
   if you create a stack from this template.
@@ -13,10 +12,11 @@ Resources:
     Properties: 
       AvailabilityZone: ca-central-1a
       ImageId: ami-0bf54ac1b628cf143
-      InstanceType: t2.micro
+      InstanceType: t2.small
       SecurityGroups: 
         - !Ref InstanceSecurityGroup
         - !Ref DBSecurityGroup
+        - !Ref SampleSecurityGroup
 
   MyEIP:
     Type: AWS::EC2::EIP
@@ -40,6 +40,16 @@ Resources:
       SecurityGroupIngress:
         - CidrIp: 0.0.0.0/0 
           FromPort: 22
+          IpProtocol: TCP
+          ToPort: 1200
+
+  SampleSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: To update the stack
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0 
+          FromPort: 40
           IpProtocol: TCP
           ToPort: 1200
    
