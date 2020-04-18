@@ -15,8 +15,8 @@ Resources:
       ImageId: ami-0bf54ac1b628cf143
       InstanceType: t2.micro
       SecurityGroups: 
-        - !REF SSH-SecurityGroup
-        - !REF MYSQL-SecurityGroup
+        - !Ref SSH-SecurityGroup
+        - !Ref MYSQL-SecurityGroup
 
   MyEIP:
     Type: AWS::EC2::EIP
