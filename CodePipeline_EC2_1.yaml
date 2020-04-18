@@ -15,15 +15,15 @@ Resources:
       ImageId: ami-0bf54ac1b628cf143
       InstanceType: t2.micro
       SecurityGroups: 
-        - !Ref SSH-SecurityGroup
-        - !Ref MYSQL-SecurityGroup
+        - !Ref SSH-SecurityGroup1
+        - !Ref MYSQL-SecurityGroup1
 
   MyEIP:
     Type: AWS::EC2::EIP
     Properties:
       InstanceId: !Ref MyInstance
 
-  SSH-SecurityGroup:
+  SSH-SecurityGroup1:
     Type: AWS::EC2::SecurityGroup
     Properties: 
       GroupDescription: Enable Security for SSH
@@ -33,7 +33,7 @@ Resources:
           IpProtocol: TCP
           ToPort: 1100
 
-  MYSQL-SecurityGroup:
+  MYSQL-SecurityGroup1:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Enable Security for MySQL
