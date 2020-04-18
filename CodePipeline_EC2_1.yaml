@@ -21,7 +21,7 @@ Resources:
   MyEIP:
     Type: AWS::EC2::EIP
     Properties:
-      InstanceId: !Ref MyInstance
+      InstanceId: !Ref WebServer
 
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
